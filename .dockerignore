@@ -1,0 +1,36 @@
+# System-generated files
+.DS_Store
+.git*
+node_modules/
+vendor/
+
+# Logs and temporary files
+logs/
+*.log
+tmp/
+cache/
+
+# Sensitive information
+.env
+.secrets
+*.key
+
+# IDE or environment-specific files
+.idea/
+phpstorm.meta.php
+config.json
+
+# Large files or directories not needed for building
+test_data/
+large_file.txt
+
+# Specific exclusions in subdirectories
+threel-frontend/node_modules/
+threel-frontend/dist/
+threel-frontend/public/images/
+php/cache/
+db-data/
+
+# Excluding entire directories (optional)
+# threel-frontend/
+# php/

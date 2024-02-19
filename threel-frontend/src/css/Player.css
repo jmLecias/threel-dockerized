@@ -1,0 +1,345 @@
+:root {
+    --primary-color: #A82122;
+    --secondary-color-dark: #2D2D2D;
+    --primary-color-dark: #1B1B1B;
+    --primary-color-darker: #0E0D0D;
+    --main-bg-color: rgba(98, 98, 98, 0.34);
+    --aside-bg-color: rgba(45, 45, 45, 0.4);
+    --text-dark: #1B1B1B;
+    --text-light: #ffff;
+    --extra-light: #ffff;
+}
+
+/* SCROLL BAR */
+
+html::-webkit-scrollbar {
+    width: 0px;
+}
+
+
+/* HTML COMPONENTS CSS */
+
+body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+}
+
+body{
+    font-family: 'Poppins', sans-serif;
+    display: grid;
+    grid-template-columns: min(215px, 15%) 1fr minmax(400px, 30%);
+    grid-template-rows: 55px 1fr;
+    grid-template-areas:
+    "header header header"
+    "nav main aside";
+}
+
+header {
+    background-color: var(--primary-color-darker);
+    grid-area: header;
+    display: flex;
+    color: white;
+    text-align: left;
+    align-items: center;
+    justify-content: space-between;
+    width: 100vw;
+}
+
+header h1 {
+    color: var(--primary-color);
+    font-size: 25px;
+    padding: 0px 50px;
+}
+
+nav {
+    background-color: var(--primary-color-dark);
+    grid-area: nav;
+    padding-top: 40px; /* Adjusted for header height */
+}
+
+nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+nav li {
+    padding: 10px 0px;
+    text-align: left;
+    position: relative;
+}
+
+nav a {
+    text-decoration: none;
+    color: var(--text-light);
+    font-weight: 500;
+    font-size: 15px;
+    padding: 0px 30px;
+    text-align: left;
+    transition: 0.3s;
+}
+
+nav li :hover {
+    font-size: 18px;
+    transform: translateY(-3px);
+}
+
+nav li:hover::after{
+    background-color: var(--primary-color);
+    border-radius: 1px;
+    content: '';
+    width: 70%;
+    height: 2px;
+    position: absolute;
+    bottom: 3px;
+    left: 30px;
+}
+
+@keyframes highlight {
+    0% {
+        width: 0%;
+    }
+    100% {
+        width: 70%;
+    }
+}
+
+
+main {
+    background-color: var(--main-bg-color);
+    grid-area: main;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+aside {
+    background-color: var(--aside-bg-color);
+    grid-area: aside;
+    color: var(--text-light);
+    padding: 30px;
+}
+
+
+/* OTHER CSS */
+
+.menu {
+    display: none;
+    margin: 0px 20px;
+    cursor: pointer;
+}
+
+.header-logo {
+    display: flex;
+    align-items: center;
+}
+
+.btn-explore {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 10px;
+    margin: 0px 20px;
+    border-radius: 10px;
+    transition: 0.5s;
+}
+
+.btn-explore:hover {
+    background-color: var(--aside-bg-color);
+    font-size: 18px;
+    transform: translateY(-3px);
+}
+
+.media-player {
+    background-color: var(--main-bg-color);
+    width: 96%;
+    height: 75%;
+    margin: 2% 2%;
+    border-radius: 10px;
+}
+
+.header-actions h1 {
+    color: var(--extra-light);
+    font-size: 15px;
+    font-weight: normal;
+    margin-right: 50px;
+    padding: 20px;
+    cursor: pointer;
+}
+
+.desc-container{
+    margin-top: 70px;
+    position: relative;
+}
+
+.desc-container h2::before {
+    content: '';
+    background-color: var(--text-light);
+    width: 80%;
+    height: 1px;
+    position: absolute;
+    top: -30px;
+    left: 0px;
+}
+
+.controls-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 60%;
+    margin: 0 10%;
+}
+
+.controls {
+    width: 100%;
+    display: flex;
+    position: relative;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.main-controls {
+    width: 40%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.right-controls {
+    width: 10%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.media-progress {
+    width: 100%;
+    display: flex;
+    align-items: center;
+}
+
+.time-text {
+    color: var(--text-light);
+    font-size: 15px;
+    font-weight: normal;
+}
+
+.progress-bar{
+    background-color: rgba(255, 255, 255, 0.42);
+    display: inline-block;
+    width: 100%;
+    height: 5px;
+    margin: 0px 10px;
+    border-radius: 2px;
+    position: relative;
+}
+
+.progress-buffer{
+    position: absolute;
+    background-color: rgba(255, 255, 255, 0.42);
+    width: 50%;
+    height: 100%;
+    border-radius: 2px;
+    animation: progressAnimation 10s linear infinite;
+}
+
+.progress-current{
+    background-color: var(--primary-color);
+    position: absolute;
+    height: 100%;
+    border-radius: 2px;
+    animation: progressAnimation 12s linear infinite;
+}
+
+@keyframes progressAnimation {
+    0% {
+        width: 0%;
+    }
+    100% {
+        width: 100%;
+    }
+}
+
+.header-actions {
+    position: relative;
+}
+
+.username-actions:hover + .user-dropdown{
+    display: block;
+}
+
+.user-dropdown:hover {
+    display: block;
+}
+
+.user-dropdown {
+    background-color: var(--secondary-color-dark);
+    position: absolute;
+    width: 80%;
+    padding: 5px;
+    top: 60px;
+    left: 10px;
+    display: none;
+    transition: 0.3s;
+}
+
+.user-dropdown ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.user-dropdown li {
+    padding: 2px 0px;
+    text-align: left;
+}
+
+.user-dropdown a {
+    text-decoration: none;
+    color: var(--text-light);
+    font-weight: normal;
+    font-size: 15px;
+    padding: 0px 30px;
+    text-align: left;
+}
+
+.control-button {
+    cursor: pointer;
+}
+
+/* when screen is small */
+
+
+@media (max-width: 1120px) {
+    body {
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-template-rows: 55px 1fr 1fr;
+        grid-template-areas:
+        "header"
+        "main"
+        "aside";
+    }
+    nav {
+        display: none;
+    }
+    .menu {
+        display: flex;
+    }
+
+    header h1 {
+        padding: 0px;
+    }
+
+    .media-player {
+        height: 60%;
+        margin: 2% 2%;
+        border-radius: 10px;
+    }
+
+    .controls-container {
+        width: 80%;
+    }
+}

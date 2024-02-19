@@ -1,0 +1,175 @@
+body,html{
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  width: 100vw;
+}
+
+body{
+  background-image: url('/public/images/bgimg.png');
+  background-size: cover;
+  background-attachment: fixed;
+}
+
+body h1 {
+  color: #A82122;
+  padding-top: 45px;
+  font-family: 'Poppins';
+  font-weight: 700;
+  font-size: 50px;
+}
+
+body h2{
+  color: #FFFFFF;
+  font-family: 'Poppins';
+  font-weight: 600;
+}
+
+.registerContainer {
+  align-items: center;
+  background-color: #1B1B1B;
+  padding: 40px 10px;
+  border-radius: 10px;
+  width: 380px;
+}
+
+.registerContainer form {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.registerContainer input {
+  background-color: #282727;
+  height: 30px;
+  color: #D9D9D9;
+  font-family: 'Poppins';
+  border-radius: 5px;
+  margin-top: 10px;
+  margin-left: 15px;
+  margin-right: 15px;
+  padding-left: 10px;
+  border: none;
+}
+
+.registerContainer select {
+  background-color: #282727;
+  height: 35px;
+  color: #D9D9D9;
+  border-radius: 5px;
+  margin-top: 10px;
+  margin-left: 15px;
+  margin-right: 15px;
+  padding-left: 10px;
+  border: none;
+  cursor: pointer;
+}
+
+.registerContainer option{
+  color: #D9D9D9;
+  font-family: 'Poppins';
+}
+
+.registerContainer p {
+  color: #BCBCBC;
+  font-family: 'Poppins';
+  font-size: 10px;
+}
+
+.registerContainer a{
+  color: #FFFFFF;
+  text-decoration: none;
+  font-family: 'Poppins';
+  font-weight: 600;
+  font-style: italic;
+  margin-top: 5px;
+  cursor: pointer;
+}
+
+.registerContainer button{
+  margin-top: 20px;
+  font-size: 12px;
+  box-sizing: border-box;
+}
+
+.registerButton{
+  background-color: #A82122;
+  color: #FFFFFF;
+  font-family: 'Poppins';
+  font-weight: bold;
+  width: 125px;
+  height: 25px;
+  margin-right: 5px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.cancelButton{
+  background-color: #BCBCBC;
+  color: #1E1E1E;
+  font-family: 'Poppins';
+  font-weight: bold;
+  width: 125px;
+  height: 25px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.error-message{
+  font-size: 12px;
+  color: #A82122;
+  margin: 0px 20px;
+}
+
+.modal-overlay {
+  position: absolute;
+  z-index: 1000;
+  width: 400px;
+  height: 600px;
+  display: block;
+  background-color: #1B1B1B;;
+}
+
+.modal {
+  position: absolute;
+  display: block;
+  z-index: 100;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(5px);
+  border-radius: 10px; 
+  color: #fff;
+}
+
+.modal-overlay h2{
+  color: #A82122;
+}
+
+.modal-button{
+  background-color: #A82122;
+  color: #FFFFFF;
+  font-family: 'Poppins';
+  font-weight: bold;
+  width: 125px;
+  height: 25px;
+  margin-right: 5px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.modal-title {
+  color: #A82122;
+  font-weight: bold;
+}
+
+.modal-text {
+  color: #000;
+}
