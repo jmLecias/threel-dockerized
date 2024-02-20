@@ -10,7 +10,7 @@ logs/
 tmp/
 cache/
 
-# Sensitive information
+# # Sensitive information
 .env
 .secrets
 *.key

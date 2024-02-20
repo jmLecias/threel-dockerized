@@ -4,6 +4,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import { useAuth } from "../hooks/useAuth";
 import Modal from 'react-bootstrap/Modal';
 import Button from 'react-bootstrap/Button';
+import Spinner from 'react-bootstrap/Spinner';
 
 function Register() {
     const navigate = useNavigate();
@@ -11,7 +12,7 @@ function Register() {
 
     const [loader, loaderOn] = useState("Register");
 
-    const [show, setShow] = useState(false);
+    const [show, setShow] = useState(true);
 
     const [didAgree, setDidAgree] = useState(false);
 
@@ -81,15 +82,15 @@ function Register() {
     return (
         <div className="App">
             <ToastContainer />
-            <Modal 
+            <Modal
                 size="lg"
                 aria-labelledby="contained-modal-title-vcenter"
                 centered
-                show={show} 
-                onHide={() => setShow(!show)}
+                show={show}
+                backdrop="static"
+                keyboard={false}
             >
-            <Modal.Dialog>
-                <Modal.Header closeButton>
+                <Modal.Header>
                     <Modal.Title>
                         <h1 className="modal-title">User Agreement</h1>
                     </Modal.Title>
@@ -100,9 +101,15 @@ function Register() {
                 </Modal.Body>
 
                 <Modal.Footer>
-                    <Button variant="secondary" onClick={() => setShow(false)}>Close</Button>
-                    <Button 
-                        variant="primary" 
+                    <Button
+                        variant="secondary"
+                        onClick={() => {
+                            navigate("/login");
+                        }
+                        }
+                    >Back</Button>
+                    <Button
+                        variant="primary"
                         onClick={() => {
                             setShow(false);
                             setDidAgree(true);
@@ -110,7 +117,6 @@ function Register() {
                         }
                     >Accept</Button>
                 </Modal.Footer>
-            </Modal.Dialog>
             </Modal>
             <h1 className='text-center'>THREEL</h1>
             <div className="registerContainer mx-auto my-auto">
@@ -185,8 +191,10 @@ function Register() {
                     <p className='mx-auto'>Already have an Account? <Link to="/login">Login Now!</Link></p>
 
                     <div className='mx-auto'>
-                        <button className="registerButton" onClick={() => setShow(!show)}>User Agreement</button>
-                        <button type="submit" className="registerButton" onClick={handleSubmit} disabled={loader === "Registering..."}>{loader}</button>
+                        <button type="submit" className="registerButton" onClick={handleSubmit} disabled={loader === "Registering..."}>
+                            <h6 className='my-auto'>{loader}</h6>
+                            {loader === "Registering..." && <Spinner animation="border" size='sm' />}    
+                        </button>
                     </div>
                 </form>
             </div>

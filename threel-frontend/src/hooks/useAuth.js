@@ -18,26 +18,16 @@ export const AuthProvider = ({ children }) => {
 
     // call this function when you want to authenticate the user
     const login = async (credentials) => {
-        return auth.login(credentials)
+        return auth.login(credentials);
     };
 
     const register = async (credentials) => {
-        return auth.register(credentials)
+        return auth.register(credentials);
     };
 
     // call this function to sign out logged in user
     const logout = () => {
-        auth.logout().then(isLoggedOut => {
-            if (isLoggedOut) {
-                toast.success("Logout successful", {
-                    autoClose:  1000,
-                    pauseOnHover: true,
-                    onOpen: () => navigate("/login", { replace: true })
-                });
-            }
-        }).catch(error => {
-            alert("Error logging out: " + error);
-        });
+        return auth.logout();
     };
 
     const value = useMemo(

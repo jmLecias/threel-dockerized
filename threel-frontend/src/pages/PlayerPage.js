@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import { useNavigate } from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
 import { useAuth } from "../hooks/useAuth";
@@ -9,20 +9,30 @@ function Player() {
     const auth = new AuthenticationService();
     const { logout, user } = useAuth();
 
+    const [logoutText, setLogoutText] = useState("Logout");
+
     const handleLogout = (event) => {
         event.preventDefault();
-        logout();
-        toast.info("Logged out", {
-            autoClose:  1000,
-            pauseOnHover: true,
+        setLogoutText("Logging out...");
+        logout().then((isLoggedOut) => {
+            if (isLoggedOut) {
+                setLogoutText("Logout");
+                navigate("/login")
+            }
+        }).catch(() => {
+            setLogoutText("Logout");
+            toast.error("Error while logging out", {
+                autoClose: 3000,
+                pauseOnHover: true,
+            });
         });
     }
     const handleMe = (event) => {
         event.preventDefault();
         const name = JSON.parse(auth.getUser()).original.name;
-        toast.info("Hello! You are "+name, {
+        toast.info("Hello! You are " + name, {
             position: "bottom-right",
-            autoClose:  1000,
+            autoClose: 1000,
             pauseOnHover: true,
         });
     }
@@ -45,9 +55,10 @@ function Player() {
                             <li><a href="#">Logout</a></li>
                         </ul> */}
                     </div>
-                    <button className="registerButton" onClick={handleLogout}>
-                        Logout
+                    <button className="registerButton" onClick={handleLogout} disabled={(logoutText) === "Logging out..."}>
+                        {logoutText}
                     </button>
+                    <br/>
                     <button className="registerButton" onClick={handleMe}>
                         Who am I?
                     </button>

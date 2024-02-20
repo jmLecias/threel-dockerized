@@ -2,7 +2,8 @@ import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
 import { useAuth } from "../hooks/useAuth";
-import Modal from '../components/Modal';
+import Spinner from 'react-bootstrap/Spinner';
+
 
 function Login() {
     const { login } = useAuth();
@@ -95,11 +96,10 @@ function Login() {
                         <p className='mx-auto'>Don't have an Account?  <Link to="/register">Register Here!</Link></p>
 
                         <div className='mx-auto'>
-                            <button
-                                className="registerButton"
-                                onClick={handleSubmit}
-                                disabled={loader === "Logging in..."}
-                            >{loader}</button>
+                            <button type="submit" className="registerButton" onClick={handleSubmit} disabled={loader === "Logging in..."}>
+                                <h6 className='my-auto'>{loader}</h6>
+                                {loader === "Logging in..." && <Spinner animation="border" size='sm' />}
+                            </button>
                         </div>
                     </form>
                 </div>
