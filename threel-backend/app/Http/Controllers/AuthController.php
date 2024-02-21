@@ -27,12 +27,14 @@ class AuthController extends Controller
                 'password_confirmation' => 'required|string|min:8'
             ]);
 
-            User::create([
+            $user = User::create([
                 'name' => $request->input('name'),
                 'email' => $request->input('email'),
                 'username' => $request->input('username'),
                 'password' => Hash::make($request->input('password')),
             ]);
+
+            $user->sendEmailVerificationNotification();
 
             $credentials = $request->only('email', 'password');
             $token = auth()->attempt($credentials);
@@ -42,6 +44,22 @@ class AuthController extends Controller
             $errors = $e->errors();
             return response()->json(['errors' => $errors], 422);
         }
+    }
+
+    /**
+     * Get a JWT via given credentials.
+     *
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function verify(Request $request)
+    {   
+        $credentials = $request->only('email', 'password');
+
+        if (!$token = auth()->attempt($credentials)) {
+            return response()->json(['errors' => 'Unauthorized'], 401);
+        }
+
+        return $this->respondWithToken($token);
     }
 
 
