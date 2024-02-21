@@ -26,20 +26,6 @@ services:
     container_name: php
     expose:
       - "9000"
-  react:
-    build:
-      context: .
-      dockerfile: ./threel-frontend/Dockerfile
-    ports:
-      - "3000:3000"
-    volumes:
-      - ./threel-frontend:/app
-      - /app/node_modules
-    networks:
-      - internal
-    container_name: frontend
-  # mailhog:
-  #   image: mailhog
   mysql:
     container_name: db
     restart: always
@@ -53,13 +39,20 @@ services:
       MYSQL_PASS: 'root'
     volumes:
       - ./db-data:/var/lib/mysql
-      # - ./db-data: /var/lib/db-data
+    networks:
+      - internal
+  mailhog:
+    image: mailhog/mailhog
+    tty: true
+    ports:
+      - '1025:1025'
+      - '8025:8025'
+    restart: on-failure
     networks:
       - internal
 networks:
   internal:
     driver: bridge
-
 
 
   # frontend:
