@@ -41,6 +41,16 @@ services:
       - ./db-data:/var/lib/mysql
     networks:
       - internal
+  mailhog:
+    image: mailhog/mailhog:latest
+    ports:
+      - "1025:1025"  # SMTP port
+      - "8025:8025"  # Web UI port
+    volumes:
+      - "./mailhog_data:/data"  # Optional persistent data volume (adjust mount point if needed)
+    environment:
+      - SMTP_HOST=mailhog  # Set environment variables for your application (if applicable)
+      - SMTP_PORT=1025
 networks:
   internal:
     driver: bridge

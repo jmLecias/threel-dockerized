@@ -11,9 +11,7 @@ tmp/
 cache/
 
 # Sensitive information
-.env
-.secrets
-*.key
+
 
 # IDE or environment-specific files
 .idea/
