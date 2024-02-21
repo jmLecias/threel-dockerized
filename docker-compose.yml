@@ -38,6 +38,8 @@ services:
     networks:
       - internal
     container_name: frontend
+  # mailhog:
+  #   image: mailhog
   mysql:
     container_name: db
     restart: always
@@ -51,6 +53,7 @@ services:
       MYSQL_PASS: 'root'
     volumes:
       - ./db-data:/var/lib/mysql
+      # - ./db-data: /var/lib/db-data
     networks:
       - internal
 networks:
