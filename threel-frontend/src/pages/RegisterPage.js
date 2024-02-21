@@ -61,6 +61,8 @@ function Register() {
                 if (isRegistered === true) {
                     navigate("/home", { replace: true });
                     loaderOn("Register");
+                } else {
+                    
                 }
             }).catch((error) => {
                 setState(prevState => ({
