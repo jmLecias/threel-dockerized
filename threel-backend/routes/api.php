@@ -5,7 +5,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use App\Models\User;
-use Illuminate\Support\Facades\Log;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -31,14 +31,6 @@ Route::middleware('api')->group(function () {
     Route::post('/login', 'App\Http\Controllers\AuthController@login')->name('login');
     Route::post('/register', 'App\Http\Controllers\AuthController@register')->name('register');
 });
-
-
-// verify
-Route::get('/email/verify/{id}/{hash}', function (EmailVerificationRequest $request) {
-    $request->fulfill();
-
-    return redirect('/');
-})->name('verification.verify');
 
 // When email verification resend
 Route::post('/email/verification-resend', function (Request $request) {

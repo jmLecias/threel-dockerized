@@ -30,6 +30,9 @@ function Player() {
     const handleMe = (event) => {
         event.preventDefault();
         const name = JSON.parse(auth.getUser()).original.name;
+        // auth.threel_api.post('/email/verification-resend').then(() => {
+            
+        // })
         toast.info("Hello! You are " + name, {
             position: "bottom-right",
             autoClose: 1000,
@@ -49,6 +52,7 @@ function Player() {
 
                 <div className="header-actions mx-auto my-auto">
                     <h1 className="username-actions">{JSON.parse(auth.getUser()).original.name}</h1>
+                    <h1 className="username-actions">Please Verify Email Addressssssssssss</h1>
                     <div className="user-dropdown">
                         {/* <ul>
                             <li><a href="#">Profile</a></li>

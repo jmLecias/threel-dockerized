@@ -26,6 +26,18 @@ services:
     container_name: php
     expose:
       - "9000"
+  react:
+    build:
+      context: .
+      dockerfile: ./threel-frontend/Dockerfile
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./threel-frontend:/app
+      - /app/node_modules
+    networks:
+      - internal
+    container_name: frontend
   mysql:
     container_name: db
     restart: always
@@ -50,22 +62,19 @@ services:
     restart: on-failure
     networks:
       - internal
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    depends_on:
+      - mysql
+    environment:
+      PMA_HOST: mysql
+      PMA_USER: 'root'
+      PMA_PASSWORD: 'root'
+    ports:
+      - "8080:80"
+    networks:
+      - internal
+    container_name: phpmyadmin
 networks:
   internal:
     driver: bridge
-
-
-  # frontend:
-  #   build:
-  #     context: .
-  #     dockerfile: threel-frontend/Dockerfile
-  #   ports:
-  #     - "3000:3000"
-  #   networks:
-  #     - internal
-  #   depends_on:
-  #     - php
-  #   volumes:
-  #     - .:/app
-  #     - /app/node_modules
-  #   container_name: frontend

@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\ValidationException;
+use Illuminate\Auth\Events\Registered;
 
 class AuthController extends Controller
 {
@@ -33,8 +34,8 @@ class AuthController extends Controller
                 'username' => $request->input('username'),
                 'password' => Hash::make($request->input('password')),
             ]);
-            
-            $user->sendEmailVerificationNotification();
+            event(new Registered($user));
+            // $user->sendEmailVerificationNotification();
 
             $credentials = $request->only('email', 'password');
             $token = auth()->attempt($credentials);
